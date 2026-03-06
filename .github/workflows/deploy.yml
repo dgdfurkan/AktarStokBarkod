@@ -39,5 +39,5 @@ jobs:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: ../dist # Vite config'deki outDir: '../dist' ile uyumlu
+          folder: dist # Proje içindeki dist klasörü
           branch: gh-pages
