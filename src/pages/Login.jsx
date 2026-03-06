@@ -4,6 +4,10 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
 import { Lock, Mail, Check, Leaf as Eco } from 'lucide-react';
 
+// Asset Importları
+import logoImg from '../assets/logo.png';
+import loginVideoSource from '../assets/videos/login-bg.mp4';
+
 export default function Login() {
     const navigate = useNavigate();
     const videoRef = useRef(null);
@@ -58,7 +62,7 @@ export default function Login() {
                         onTimeUpdate={handleTimeUpdate}
                         className="absolute inset-0 w-full h-full object-cover scale-105"
                     >
-                        <source src="videos/login-bg.mp4" type="video/mp4" />
+                        <source src={loginVideoSource} type="video/mp4" />
                     </video>
 
                     {/* Akıllı Blur Overlay */}
@@ -81,7 +85,7 @@ export default function Login() {
                     <div className="max-w-md w-full mx-auto">
                         <div className="flex items-center gap-3 mb-10">
                             <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg shadow-primary/10 overflow-hidden bg-white/50 backdrop-blur-sm border border-white/20 p-1.5">
-                                <img src="logo.png" alt="Aktar Pro Logo" className="w-full h-full object-contain" />
+                                <img src={logoImg} alt="Aktar Pro Logo" className="w-full h-full object-contain" />
                             </div>
                             <h1 className="text-2xl font-bold tracking-tight text-slate-800 dark:text-white">Aktar Pro</h1>
                         </div>
