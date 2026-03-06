@@ -28,7 +28,7 @@ const PrivateRoute = ({ children, requiredRole = 'user' }) => {
             setRole('user');
           }
         } catch (error) {
-          console.error("Error fetching user role:", error);
+          console.error("Firestore Permission Error: Lütfen Firebase Console'dan Firestore Rules kısmını güncelleyin!", error);
           setRole('user');
         }
       } else {
