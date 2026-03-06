@@ -43,10 +43,14 @@ function ZoomManager({ children }) {
   return children;
 }
 
+import { BrowserRouter } from 'react-router-dom'
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ZoomManager>
-      <App />
-    </ZoomManager>
+    <BrowserRouter basename="/AktarStokBarkod">
+      <ZoomManager>
+        <App />
+      </ZoomManager>
+    </BrowserRouter>
   </StrictMode>,
 )
