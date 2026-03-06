@@ -43,8 +43,9 @@ const PrivateRoute = ({ children, requiredRole = 'user' }) => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
-        <div className="w-12 h-12 border-4 border-[#11d4a4] border-t-transparent rounded-full animate-spin"></div>
+      <div className="min-h-screen bg-white flex flex-col items-center justify-center">
+        <div className="w-16 h-16 border-4 border-[#11d4a4] border-t-transparent rounded-full animate-spin mb-4"></div>
+        <p className="text-slate-500 font-medium animate-pulse">Sistem hazırlanıyor...</p>
       </div>
     );
   }

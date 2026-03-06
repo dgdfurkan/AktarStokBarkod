@@ -8,6 +8,8 @@ import { Lock, Mail, Check, Leaf as Eco } from 'lucide-react';
 import logoImg from '../assets/logo.png';
 import loginVideoSource from '../assets/videos/login-bg.mp4';
 
+import { onAuthStateChanged } from 'firebase/auth';
+
 export default function Login() {
     const navigate = useNavigate();
     const videoRef = useRef(null);
@@ -16,6 +18,18 @@ export default function Login() {
     const [isBlurring, setIsBlurring] = useState(false);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+
+    // Otomatik Yönlendirme: Eğer kullanıcı zaten giriş yapmışsa
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // App.jsx içindeki PrivateRoute rol kontrolünü yapacak, 
+                // biz sadece Login sayfasından uzaklaştırıyoruz.
+                navigate('/');
+            }
+        });
+        return () => unsubscribe();
+    }, [navigate]);
 
     const handleTimeUpdate = () => {
         if (videoRef.current) {
