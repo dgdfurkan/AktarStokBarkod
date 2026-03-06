@@ -15,7 +15,7 @@ import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
 // Asset Importları
-import logoImg from '../assets/logo.png';
+import logoImg from '../assets/logo.svg';
 
 function cn(...inputs) {
     return twMerge(clsx(inputs));

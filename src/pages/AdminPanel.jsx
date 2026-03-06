@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // Asset Importları
-import logoImg from '../assets/logo.png';
+import logoImg from '../assets/logo.svg';
 import {
     Users,
     Store,

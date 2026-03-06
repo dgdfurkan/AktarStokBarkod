@@ -5,7 +5,7 @@ import { auth } from '../firebase';
 import { Lock, Mail, Check, Leaf as Eco } from 'lucide-react';
 
 // Asset Importları
-import logoImg from '../assets/logo.png';
+import logoImg from '../assets/logo.svg';
 import loginVideoSource from '../assets/videos/login-bg.mp4';
 
 import { onAuthStateChanged } from 'firebase/auth';
