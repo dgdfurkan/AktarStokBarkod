@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // Asset Importları
 import logoImg from '../assets/logo.svg';
+import { db } from '../firebase';
+import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
 import {
     Users,
     Store,
@@ -28,6 +30,26 @@ import { useNavigate } from 'react-router-dom';
 export default function AdminPanel() {
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
+    const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    // Gerçek Veri Çekme (Firestore)
+    useEffect(() => {
+        const q = query(collection(db, 'users'), orderBy('createdAt', 'desc'));
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            const usersData = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+            setUsers(usersData);
+            setLoading(false);
+        }, (error) => {
+            console.error("Firestore error:", error);
+            setLoading(false);
+        });
+
+        return () => unsubscribe();
+    }, []);
 
     const handleLogout = () => {
         localStorage.removeItem('isAuthenticated');
@@ -35,48 +57,12 @@ export default function AdminPanel() {
         navigate('/login');
     };
 
-    const users = [
-        {
-            id: 1,
-            name: "Doğa Aktariye",
-            owner: "Ahmet Yılmaz",
-            regDate: "12 Eki 2023",
-            email: "ahmet@dogaaktariye.com",
-            phone: "+90 555 123 4567",
-            trialStatus: "Completed",
-            lastSession: "Bugün, 09:41",
-            avgDailyTime: "45dk/gün",
-            status: "Active",
-            avatar: "DY"
-        },
-        {
-            id: 2,
-            name: "Şifa Baharat",
-            owner: "Ayşe Demir",
-            regDate: "01 Kas 2023",
-            email: "info@sifabaharat.com",
-            phone: "+90 532 987 6543",
-            trialStatus: "5 Gün Kaldı",
-            trialProgress: 66,
-            lastSession: "Dün, 14:20",
-            avgDailyTime: "15dk/gün",
-            status: "Trial",
-            avatar: "ŞB"
-        },
-        {
-            id: 3,
-            name: "Lokman Hekim",
-            owner: "Mehmet Öztürk",
-            regDate: "15 Ağu 2023",
-            email: "iletisim@lokmanhekim.com",
-            phone: "+90 544 321 0987",
-            trialStatus: "Expired",
-            lastSession: "12 Eki, 10:05",
-            avgDailyTime: "0dk/gün",
-            status: "Suspended",
-            avatar: "LH"
-        }
-    ];
+    // Filtreleme mantığı
+    const filteredUsers = users.filter(user =>
+        user.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.owner?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.email?.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     return (
         <div className="bg-background-light font-display text-slate-900 min-h-screen flex w-full h-full overflow-hidden">
@@ -156,10 +142,10 @@ export default function AdminPanel() {
                 <div className="p-8">
                     {/* Stats Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                        <StatCard icon={<Store size={28} />} label="Aktif Kullanıcılar" value="1,284" trend="12%" color="primary" />
-                        <StatCard icon={<UserPlus size={28} />} label="Yeni Kayıtlar (Bu Ay)" value="45" trend="5%" color="blue" />
-                        <StatCard icon={<TimerOff size={28} />} label="Deneme Süresi Dolanlar" value="18" subtitle="Mağaza" color="orange" />
-                        <StatCard icon={<Wallet size={28} />} label="Platform Geliri" value="₺142K" trend="8%" color="cyan" />
+                        <StatCard icon={<Store size={28} />} label="Toplam Kullanıcı" value={loading ? "..." : users.length} trend="+0%" color="primary" />
+                        <StatCard icon={<UserPlus size={28} />} label="Yeni Kayıtlar" value={loading ? "..." : users.length} color="blue" />
+                        <StatCard icon={<TimerOff size={28} />} label="Süresi Dolanlar" value="0" subtitle="Mağaza" color="orange" />
+                        <StatCard icon={<Wallet size={28} />} label="Toplam Geliri" value="₺0" color="cyan" />
                     </div>
 
                     {/* User Table Card */}
@@ -190,54 +176,69 @@ export default function AdminPanel() {
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-slate-100">
-                                    {users.map(user => (
-                                        <tr key={user.id} className={`hover:bg-slate-50 transition-colors group ${user.status === 'Suspended' ? 'opacity-75' : ''}`}>
-                                            <td className="p-4 pl-6">
-                                                <div className="flex items-center gap-3">
-                                                    <div className="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400 border border-slate-200 font-bold">
-                                                        {user.avatar}
-                                                    </div>
-                                                    <div>
-                                                        <p className="text-sm font-bold text-slate-800">{user.name}</p>
-                                                        <p className="text-xs text-slate-500">{user.owner}</p>
-                                                    </div>
+                                    {loading ? (
+                                        <tr>
+                                            <td colSpan="7" className="p-20 text-center">
+                                                <div className="flex flex-col items-center gap-3">
+                                                    <div className="w-10 h-10 border-4 border-cyan-700 border-t-transparent rounded-full animate-spin"></div>
+                                                    <p className="text-slate-500 font-medium">Veriler yükleniyor...</p>
                                                 </div>
-                                            </td>
-                                            <td className="p-4 text-sm text-slate-600">{user.regDate}</td>
-                                            <td className="p-4 text-center">
-                                                <div className="flex items-center justify-center gap-2 text-slate-400">
-                                                    <button className="hover:text-cyan-700 transition-colors p-1" title={user.email}><Mail size={18} /></button>
-                                                    <button className="hover:text-cyan-700 transition-colors p-1" title={user.phone}><Phone size={18} /></button>
-                                                </div>
-                                            </td>
-                                            <td className="p-4">
-                                                <TrialDisplay status={user.status} text={user.trialStatus} progress={user.trialProgress} />
-                                            </td>
-                                            <td className="p-4">
-                                                <p className="text-sm text-slate-800">{user.lastSession}</p>
-                                                <p className="text-xs text-slate-500">Ort. {user.avgDailyTime}</p>
-                                            </td>
-                                            <td className="p-4 uppercase tracking-tighter">
-                                                <StatusBadge status={user.status} />
-                                            </td>
-                                            <td className="p-4 pr-6 text-right">
-                                                <button className="px-3 py-1.5 text-xs font-bold text-cyan-700 bg-cyan-700/10 hover:bg-cyan-700 hover:text-white rounded-lg transition-colors border border-cyan-700/20">
-                                                    Detayları Gör
-                                                </button>
                                             </td>
                                         </tr>
-                                    ))}
+                                    ) : filteredUsers.length === 0 ? (
+                                        <tr>
+                                            <td colSpan="7" className="p-20 text-center text-slate-500 font-medium">
+                                                Henüz kayıtlı kullanıcı bulunmuyor.
+                                            </td>
+                                        </tr>
+                                    ) : (
+                                        filteredUsers.map(user => (
+                                            <tr key={user.id} className={`hover:bg-slate-50 transition-colors group ${user.status === 'Suspended' ? 'opacity-75' : ''}`}>
+                                                <td className="p-4 pl-6">
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400 border border-slate-200 font-bold uppercase">
+                                                            {user.name ? user.name.substring(0, 2) : '??'}
+                                                        </div>
+                                                        <div>
+                                                            <p className="text-sm font-bold text-slate-800">{user.name || 'İsimsiz Dükkan'}</p>
+                                                            <p className="text-xs text-slate-500">{user.owner || 'Sahibi Belirsiz'}</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td className="p-4 text-sm text-slate-600">{user.regDate || 'Bilinmiyor'}</td>
+                                                <td className="p-4 text-center">
+                                                    <div className="flex items-center justify-center gap-2 text-slate-400">
+                                                        <button className="hover:text-cyan-700 transition-colors p-1" title={user.email}><Mail size={18} /></button>
+                                                        <button className="hover:text-cyan-700 transition-colors p-1" title={user.phone}><Phone size={18} /></button>
+                                                    </div>
+                                                </td>
+                                                <td className="p-4">
+                                                    <TrialDisplay status={user.status} text={user.trialStatus} progress={user.trialProgress} />
+                                                </td>
+                                                <td className="p-4">
+                                                    <p className="text-sm text-slate-800">{user.lastSession || 'Hiç giriş yapmadı'}</p>
+                                                    <p className="text-xs text-slate-500">Ort. {user.avgDailyTime || '0dk'}</p>
+                                                </td>
+                                                <td className="p-4 uppercase tracking-tighter">
+                                                    <StatusBadge status={user.status || 'Active'} />
+                                                </td>
+                                                <td className="p-4 pr-6 text-right">
+                                                    <button className="px-3 py-1.5 text-xs font-bold text-cyan-700 bg-cyan-700/10 hover:bg-cyan-700 hover:text-white rounded-lg transition-colors border border-cyan-700/20">
+                                                        Detayları Gör
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        ))
+                                    )}
                                 </tbody>
                             </table>
                         </div>
 
                         <div className="p-4 border-t border-slate-100 flex items-center justify-between text-sm text-slate-500">
-                            <span>Toplam 1,284 dükkan içinden 1-3 arası gösteriliyor</span>
+                            <span>{loading ? 'Yükleniyor...' : `Toplam ${filteredUsers.length} sonuç listeleniyor`}</span>
                             <div className="flex gap-1">
                                 <button className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-100 disabled:opacity-50"><ChevronLeft size={16} /></button>
                                 <button className="w-8 h-8 flex items-center justify-center rounded-lg bg-cyan-700 text-white font-medium">1</button>
-                                <button className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-100 font-medium text-slate-700">2</button>
-                                <button className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-100 font-medium text-slate-700">3</button>
                                 <button className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-100"><ChevronRight size={16} /></button>
                             </div>
                         </div>
