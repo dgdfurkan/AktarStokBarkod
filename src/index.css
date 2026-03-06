@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #11d4a4;
+  --color-background-light: #f6f8f8;
+  --color-background-dark: #10221d;
+
+  --font-display: "Inter", sans-serif;
+
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+}
+
+@layer base {
+
+  html,
+  body {
+    @apply h-full overflow-hidden;
+    overscroll-behavior: none;
+    touch-action: none;
+    /* Zoom ve varsayılan touch hareketlerini engeller */
+  }
+
+  body {
+    @apply bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased;
+    /* Zoom engelleme (Safari ve bazı tarayıcılar için) */
+    -webkit-text-size-adjust: 100%;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-sm transition-all duration-300;
+  }
+
+  .btn-primary {
+    @apply bg-primary hover:bg-primary/90 text-white font-semibold py-2 px-4 rounded-xl transition-all active:scale-95 shadow-lg shadow-primary/20;
+  }
+
+  .nav-link {
+    @apply flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all duration-200;
+  }
+
+  .nav-link-active {
+    @apply bg-primary/10 text-primary font-medium;
+  }
+}
