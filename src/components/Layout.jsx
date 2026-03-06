@@ -48,8 +48,8 @@ export default function Layout() {
             {/* Sidebar */}
             <aside className="w-64 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hidden lg:flex flex-col sticky top-0 h-screen">
                 <div className="p-6 flex items-center gap-3">
-                    <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/20">
-                        <Eco size={24} />
+                    <div className="w-10 h-10 bg-white/50 dark:bg-slate-800/50 rounded-xl flex items-center justify-center shadow-lg shadow-primary/5 p-1.5 border border-slate-100 dark:border-slate-800">
+                        <img src="logo.png" alt="Logo" className="w-full h-full object-contain" />
                     </div>
                     <h1 className="text-xl font-bold tracking-tight text-slate-800 dark:text-white">Aktar Pro</h1>
                 </div>

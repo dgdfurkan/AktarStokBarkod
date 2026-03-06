@@ -81,12 +81,12 @@ export default function AdminPanel() {
             {/* Sidebar - Fix: Overflow-y-auto to allow scrolling if many menu items */}
             <aside className="w-64 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hidden lg:flex flex-col h-full shrink-0">
                 <div className="p-6 flex items-center gap-3">
-                    <div className="w-10 h-10 bg-cyan-700 rounded-xl flex items-center justify-center text-white shadow-md shadow-cyan-700/20">
-                        <ShieldCheck size={24} />
+                    <div className="w-10 h-10 bg-white dark:bg-slate-800 rounded-xl flex items-center justify-center shadow-md p-1.5 border border-slate-100 dark:border-slate-700">
+                        <img src="logo.png" alt="Logo" className="w-full h-full object-contain" />
                     </div>
                     <div>
-                        <h1 className="text-xl font-bold tracking-tight text-slate-800 dark:text-white">Aktar Yönetim</h1>
-                        <span className="text-[10px] font-bold text-cyan-700 uppercase tracking-wider">Süper Admin</span>
+                        <h1 className="text-xl font-bold tracking-tight text-slate-800 dark:text-white leading-none mb-1">Aktar Yönetim</h1>
+                        <span className="text-[10px] font-bold text-cyan-700 uppercase tracking-widest bg-cyan-700/10 px-1.5 py-0.5 rounded-md">Süper Admin</span>
                     </div>
                 </div>
 

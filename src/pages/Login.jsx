@@ -58,7 +58,7 @@ export default function Login() {
                         onTimeUpdate={handleTimeUpdate}
                         className="absolute inset-0 w-full h-full object-cover scale-105"
                     >
-                        <source src="/videos/login-bg.mp4" type="video/mp4" />
+                        <source src="videos/login-bg.mp4" type="video/mp4" />
                     </video>
 
                     {/* Akıllı Blur Overlay */}
@@ -81,7 +81,7 @@ export default function Login() {
                     <div className="max-w-md w-full mx-auto">
                         <div className="flex items-center gap-3 mb-10">
                             <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg shadow-primary/10 overflow-hidden bg-white/50 backdrop-blur-sm border border-white/20 p-1.5">
-                                <img src="/AktarStokBarkod/logo.png" alt="Aktar Pro Logo" className="w-full h-full object-contain" />
+                                <img src="logo.png" alt="Aktar Pro Logo" className="w-full h-full object-contain" />
                             </div>
                             <h1 className="text-2xl font-bold tracking-tight text-slate-800 dark:text-white">Aktar Pro</h1>
                         </div>
@@ -111,7 +111,7 @@ export default function Login() {
                                         id="email"
                                         type="email"
                                         required
-                                        placeholder="admin@aktar.pro"
+                                        placeholder="eposta@adresiniz.com"
                                         className="w-full pl-12 pr-4 py-3.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:border-primary focus:ring-4 focus:ring-primary/20 rounded-xl text-sm transition-all outline-none dark:text-white"
                                         value={formData.email}
                                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
