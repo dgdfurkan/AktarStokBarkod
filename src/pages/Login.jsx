@@ -1,5 +1,8 @@
+import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
+import { Lock, Mail, Check, Leaf as Eco } from 'lucide-react';
 
 export default function Login() {
     const navigate = useNavigate();
@@ -77,8 +80,8 @@ export default function Login() {
                 <div className="w-full lg:w-1/2 p-8 md:p-16 flex flex-col justify-center bg-white dark:bg-slate-900">
                     <div className="max-w-md w-full mx-auto">
                         <div className="flex items-center gap-3 mb-10">
-                            <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/20">
-                                <Eco size={30} />
+                            <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg shadow-primary/10 overflow-hidden bg-white/50 backdrop-blur-sm border border-white/20 p-1.5">
+                                <img src="/AktarStokBarkod/logo.png" alt="Aktar Pro Logo" className="w-full h-full object-contain" />
                             </div>
                             <h1 className="text-2xl font-bold tracking-tight text-slate-800 dark:text-white">Aktar Pro</h1>
                         </div>
@@ -180,11 +183,16 @@ export default function Login() {
                         </form>
 
                         <div className="mt-8 text-center">
-                            <p className="text-sm text-slate-600 dark:text-slate-400">
+                            <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
                                 Hesabınız yok mu?{' '}
                                 <a className="font-bold text-primary hover:underline" href="#">
                                     Bir hesap oluşturun
                                 </a>
+                            </p>
+
+                            {/* Otomatik Versiyon Bilgisi */}
+                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] opacity-50">
+                                Aktar Pro v{__APP_VERSION__}
                             </p>
                         </div>
                     </div>
