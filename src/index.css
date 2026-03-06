@@ -3,7 +3,6 @@
 @theme {
   --color-primary: #11d4a4;
   --color-background-light: #f6f8f8;
-  --color-background-dark: #10221d;
 
   --font-display: "Inter", sans-serif;
 
@@ -15,22 +14,16 @@
 
   html,
   body {
-    @apply h-full overflow-hidden;
+    @apply h-full overflow-hidden bg-background-light font-display text-slate-900 antialiased;
     overscroll-behavior: none;
     touch-action: none;
-    /* Zoom ve varsayılan touch hareketlerini engeller */
-  }
-
-  body {
-    @apply bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased;
-    /* Zoom engelleme (Safari ve bazı tarayıcılar için) */
     -webkit-text-size-adjust: 100%;
   }
 }
 
 @layer components {
   .glass-card {
-    @apply bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-sm transition-all duration-300;
+    @apply bg-white/80 backdrop-blur-md border border-slate-200 shadow-sm transition-all duration-300;
   }
 
   .btn-primary {
@@ -38,10 +31,47 @@
   }
 
   .nav-link {
-    @apply flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all duration-200;
+    @apply flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 rounded-xl transition-all duration-200;
   }
 
   .nav-link-active {
     @apply bg-primary/10 text-primary font-medium;
   }
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #cbd5e1;
+}
+
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-4px);
+  }
+
+  75% {
+    transform: translateX(4px);
+  }
+}
+
+.animate-shake {
+  animation: shake 0.2s ease-in-out 0s 2;
 }

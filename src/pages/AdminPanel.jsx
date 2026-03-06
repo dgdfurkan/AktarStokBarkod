@@ -79,15 +79,15 @@ export default function AdminPanel() {
     ];
 
     return (
-        <div className="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex w-full h-full overflow-hidden">
+        <div className="bg-background-light font-display text-slate-900 min-h-screen flex w-full h-full overflow-hidden">
             {/* Sidebar - Fix: Overflow-y-auto to allow scrolling if many menu items */}
-            <aside className="w-64 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hidden lg:flex flex-col h-full shrink-0">
+            <aside className="w-64 border-r border-slate-200 bg-white hidden lg:flex flex-col h-full shrink-0">
                 <div className="p-6 flex items-center gap-3">
-                    <div className="w-10 h-10 bg-white dark:bg-slate-800 rounded-xl flex items-center justify-center shadow-md p-1.5 border border-slate-100 dark:border-slate-700">
+                    <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-md p-1.5 border border-slate-100">
                         <img src={logoImg} alt="Logo" className="w-full h-full object-contain" />
                     </div>
                     <div>
-                        <h1 className="text-xl font-bold tracking-tight text-slate-800 dark:text-white leading-none mb-1">Aktar Yönetim</h1>
+                        <h1 className="text-xl font-bold tracking-tight text-slate-800 leading-none mb-1">Aktar Yönetim</h1>
                         <span className="text-[10px] font-bold text-cyan-700 uppercase tracking-widest bg-cyan-700/10 px-1.5 py-0.5 rounded-md">Süper Admin</span>
                     </div>
                 </div>
@@ -96,22 +96,22 @@ export default function AdminPanel() {
                     <a className="flex items-center gap-3 px-4 py-3 bg-cyan-700/10 text-cyan-700 rounded-xl font-medium" href="#">
                         <Users size={20} /> Kullanıcı Yönetimi
                     </a>
-                    <a className="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors" href="#">
+                    <a className="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 rounded-xl transition-colors" href="#">
                         <CreditCard size={20} /> Abonelikler
                     </a>
-                    <a className="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors" href="#">
+                    <a className="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 rounded-xl transition-colors" href="#">
                         <Activity size={20} /> Sistem Sağlığı
                     </a>
-                    <a className="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors" href="#">
+                    <a className="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 rounded-xl transition-colors" href="#">
                         <Headset size={20} /> Destek Talepleri
                         <span className="ml-auto bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold">3</span>
                     </a>
                 </nav>
 
-                <div className="p-4 mt-auto border-t border-slate-100 dark:border-slate-800">
+                <div className="p-4 mt-auto border-t border-slate-100">
                     <button
                         onClick={handleLogout}
-                        className="w-full flex items-center gap-3 px-4 py-3 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl transition-colors font-medium"
+                        className="w-full flex items-center gap-3 px-4 py-3 text-red-500 hover:bg-red-50 rounded-xl transition-colors font-medium"
                     >
                         <LogOut size={20} /> Çıkış Yap
                     </button>
@@ -120,14 +120,14 @@ export default function AdminPanel() {
 
             {/* Main Content Area */}
             <main className="flex-1 flex flex-col min-w-0 h-full overflow-y-auto">
-                <header className="h-20 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 z-30 flex items-center justify-between px-8 shrink-0">
+                <header className="h-20 border-b border-slate-200 bg-white/80 backdrop-blur-md sticky top-0 z-30 flex items-center justify-between px-8 shrink-0">
                     <div className="flex items-center gap-6 flex-1">
-                        <h2 className="text-lg font-bold text-slate-800 dark:text-white hidden sm:block whitespace-nowrap">Süper Admin Paneli</h2>
-                        <div className="h-6 w-[1px] bg-slate-200 dark:bg-slate-800 hidden sm:block"></div>
+                        <h2 className="text-lg font-bold text-slate-800 hidden sm:block whitespace-nowrap">Süper Admin Paneli</h2>
+                        <div className="h-6 w-[1px] bg-slate-200 hidden sm:block"></div>
                         <div className="relative group max-w-md w-full">
                             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-cyan-700 transition-colors" size={20} />
                             <input
-                                className="w-full pl-11 pr-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-transparent focus:border-cyan-700 focus:ring-4 focus:ring-cyan-700/20 rounded-xl text-sm transition-all outline-none"
+                                className="w-full pl-11 pr-4 py-2.5 bg-slate-100 border-transparent focus:border-cyan-700 focus:ring-4 focus:ring-cyan-700/20 rounded-xl text-sm transition-all outline-none"
                                 placeholder="Kullanıcı veya dükkan adı ara..."
                                 type="text"
                                 value={searchTerm}
@@ -136,17 +136,17 @@ export default function AdminPanel() {
                         </div>
                     </div>
                     <div className="flex items-center gap-4 ml-8">
-                        <button className="w-10 h-10 flex items-center justify-center text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full relative transition-colors">
+                        <button className="w-10 h-10 flex items-center justify-center text-slate-500 hover:bg-slate-100 rounded-full relative transition-colors">
                             <Bell size={20} />
-                            <span className="absolute top-2.5 right-2.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-slate-900"></span>
+                            <span className="absolute top-2.5 right-2.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
                         </button>
-                        <div className="h-8 w-[1px] bg-slate-200 dark:bg-slate-800 mx-2"></div>
+                        <div className="h-8 w-[1px] bg-slate-200 mx-2"></div>
                         <div className="flex items-center gap-3 cursor-pointer group">
                             <div className="text-right hidden sm:block">
-                                <p className="text-sm font-semibold text-slate-800 dark:text-slate-200 leading-tight">Sistem Yöneticisi</p>
-                                <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium uppercase tracking-tight">Kurucu</p>
+                                <p className="text-sm font-semibold text-slate-800 leading-tight">Sistem Yöneticisi</p>
+                                <p className="text-[11px] text-slate-500 font-medium uppercase tracking-tight">Kurucu</p>
                             </div>
-                            <div className="w-10 h-10 rounded-xl bg-slate-800 text-white flex items-center justify-center font-bold ring-2 ring-slate-200 dark:ring-slate-700 group-hover:ring-cyan-700 transition-all">
+                            <div className="w-10 h-10 rounded-xl bg-slate-800 text-white flex items-center justify-center font-bold ring-2 ring-slate-200 group-hover:ring-cyan-700 transition-all">
                                 SY
                             </div>
                         </div>
@@ -163,11 +163,11 @@ export default function AdminPanel() {
                     </div>
 
                     {/* User Table Card */}
-                    <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 overflow-hidden">
-                        <div className="p-6 border-b border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                            <h3 className="text-lg font-bold text-slate-800 dark:text-white">Kullanıcı / Dükkan Yönetimi</h3>
+                    <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+                        <div className="p-6 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <h3 className="text-lg font-bold text-slate-800">Kullanıcı / Dükkan Yönetimi</h3>
                             <div className="flex items-center gap-3">
-                                <button className="flex items-center gap-2 px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-xl text-sm font-semibold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                                <button className="flex items-center gap-2 px-4 py-2 bg-slate-100 text-slate-600 rounded-xl text-sm font-semibold hover:bg-slate-200 transition-colors">
                                     <Filter size={18} /> Filtrele
                                 </button>
                                 <button className="flex items-center gap-2 px-4 py-2 bg-cyan-700 text-white rounded-xl text-sm font-semibold hover:bg-cyan-800 transition-colors shadow-sm shadow-cyan-700/20">
@@ -179,7 +179,7 @@ export default function AdminPanel() {
                         <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse min-w-[1000px]">
                                 <thead>
-                                    <tr className="bg-slate-50/50 dark:bg-slate-800/30 text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold border-b border-slate-100 dark:border-slate-800">
+                                    <tr className="bg-slate-50/50 text-xs uppercase tracking-wider text-slate-500 font-semibold border-b border-slate-100">
                                         <th className="p-4 pl-6">Kullanıcı/Dükkan Adı</th>
                                         <th className="p-4">Kayıt Tarihi</th>
                                         <th className="p-4 text-center">İletişim</th>
@@ -189,21 +189,21 @@ export default function AdminPanel() {
                                         <th className="p-4 pr-6 text-right">İşlemler</th>
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+                                <tbody className="divide-y divide-slate-100">
                                     {users.map(user => (
-                                        <tr key={user.id} className={`hover:bg-slate-50 dark:hover:bg-slate-800/20 transition-colors group ${user.status === 'Suspended' ? 'opacity-75' : ''}`}>
+                                        <tr key={user.id} className={`hover:bg-slate-50 transition-colors group ${user.status === 'Suspended' ? 'opacity-75' : ''}`}>
                                             <td className="p-4 pl-6">
                                                 <div className="flex items-center gap-3">
-                                                    <div className="w-10 h-10 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 border border-slate-200 dark:border-slate-700 font-bold">
+                                                    <div className="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400 border border-slate-200 font-bold">
                                                         {user.avatar}
                                                     </div>
                                                     <div>
-                                                        <p className="text-sm font-bold text-slate-800 dark:text-slate-200">{user.name}</p>
-                                                        <p className="text-xs text-slate-500 dark:text-slate-400">{user.owner}</p>
+                                                        <p className="text-sm font-bold text-slate-800">{user.name}</p>
+                                                        <p className="text-xs text-slate-500">{user.owner}</p>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td className="p-4 text-sm text-slate-600 dark:text-slate-300">{user.regDate}</td>
+                                            <td className="p-4 text-sm text-slate-600">{user.regDate}</td>
                                             <td className="p-4 text-center">
                                                 <div className="flex items-center justify-center gap-2 text-slate-400">
                                                     <button className="hover:text-cyan-700 transition-colors p-1" title={user.email}><Mail size={18} /></button>
@@ -214,8 +214,8 @@ export default function AdminPanel() {
                                                 <TrialDisplay status={user.status} text={user.trialStatus} progress={user.trialProgress} />
                                             </td>
                                             <td className="p-4">
-                                                <p className="text-sm text-slate-800 dark:text-slate-200">{user.lastSession}</p>
-                                                <p className="text-xs text-slate-500 dark:text-slate-400">Ort. {user.avgDailyTime}</p>
+                                                <p className="text-sm text-slate-800">{user.lastSession}</p>
+                                                <p className="text-xs text-slate-500">Ort. {user.avgDailyTime}</p>
                                             </td>
                                             <td className="p-4 uppercase tracking-tighter">
                                                 <StatusBadge status={user.status} />
@@ -231,14 +231,14 @@ export default function AdminPanel() {
                             </table>
                         </div>
 
-                        <div className="p-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-sm text-slate-500 dark:text-slate-400">
+                        <div className="p-4 border-t border-slate-100 flex items-center justify-between text-sm text-slate-500">
                             <span>Toplam 1,284 dükkan içinden 1-3 arası gösteriliyor</span>
                             <div className="flex gap-1">
-                                <button className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-50"><ChevronLeft size={16} /></button>
+                                <button className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-100 disabled:opacity-50"><ChevronLeft size={16} /></button>
                                 <button className="w-8 h-8 flex items-center justify-center rounded-lg bg-cyan-700 text-white font-medium">1</button>
-                                <button className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 font-medium text-slate-700 dark:text-slate-300">2</button>
-                                <button className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 font-medium text-slate-700 dark:text-slate-300">3</button>
-                                <button className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"><ChevronRight size={16} /></button>
+                                <button className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-100 font-medium text-slate-700">2</button>
+                                <button className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-100 font-medium text-slate-700">3</button>
+                                <button className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-100"><ChevronRight size={16} /></button>
                             </div>
                         </div>
                     </div>
@@ -258,14 +258,14 @@ function StatCard({ icon, label, value, trend, subtitle, color }) {
     };
 
     return (
-        <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 flex items-center gap-5 relative overflow-hidden transition-all hover:shadow-md cursor-default group">
+        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center gap-5 relative overflow-hidden transition-all hover:shadow-md cursor-default group">
             <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all ${colorMap[color]}`}>
                 {icon}
             </div>
             <div className="relative z-10">
-                <p className="text-slate-500 dark:text-slate-400 text-sm font-medium">{label}</p>
+                <p className="text-slate-500 text-sm font-medium">{label}</p>
                 <div className="flex items-baseline gap-2">
-                    <h3 className="text-2xl font-bold text-slate-800 dark:text-white">{value}</h3>
+                    <h3 className="text-2xl font-bold text-slate-800">{value}</h3>
                     {trend && (
                         <span className={`text-xs font-bold flex items-center ${color === 'orange' ? 'text-slate-400' : 'text-primary'}`}>
                             <ChevronLeft size={10} className="rotate-90" /> {trend}
@@ -282,8 +282,8 @@ function TrialDisplay({ status, text, progress }) {
     if (status === 'Active') {
         return (
             <div className="flex items-center gap-2">
-                <div className="flex-1 bg-slate-100 dark:bg-slate-800 rounded-full h-1.5 overflow-hidden w-24">
-                    <div className="bg-slate-300 dark:bg-slate-600 w-full h-full rounded-full"></div>
+                <div className="flex-1 bg-slate-100 rounded-full h-1.5 overflow-hidden w-24">
+                    <div className="bg-slate-300 w-full h-full rounded-full"></div>
                 </div>
                 <span className="text-[11px] font-bold text-slate-400 whitespace-nowrap">Tamamlandı</span>
             </div>
@@ -296,7 +296,7 @@ function TrialDisplay({ status, text, progress }) {
                 <div className="flex items-center justify-between text-[11px] mb-0.5">
                     <span className="font-bold text-orange-500">{text}</span>
                 </div>
-                <div className="flex-1 bg-slate-100 dark:bg-slate-800 rounded-full h-1.5 overflow-hidden mb-1">
+                <div className="flex-1 bg-slate-100 rounded-full h-1.5 overflow-hidden mb-1">
                     <div className="bg-orange-500 h-full rounded-full" style={{ width: `${progress}%` }}></div>
                 </div>
                 <button className="text-[10px] font-bold text-slate-500 hover:text-cyan-700 uppercase flex items-center gap-1 transition-colors">
@@ -308,7 +308,7 @@ function TrialDisplay({ status, text, progress }) {
 
     return (
         <div className="flex items-center gap-2">
-            <div className="flex-1 bg-slate-100 dark:bg-slate-800 rounded-full h-1.5 overflow-hidden w-24">
+            <div className="flex-1 bg-slate-100 rounded-full h-1.5 overflow-hidden w-24">
                 <div className="bg-red-500 w-full h-full rounded-full"></div>
             </div>
             <span className="text-[11px] font-bold text-red-500 whitespace-nowrap">Süresi Doldu</span>
@@ -319,8 +319,8 @@ function TrialDisplay({ status, text, progress }) {
 function StatusBadge({ status }) {
     const styles = {
         Active: "bg-primary/10 text-primary border-primary/20",
-        Trial: "bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/20",
-        Suspended: "bg-slate-500/10 text-slate-600 dark:text-slate-400 border-slate-500/20"
+        Trial: "bg-orange-500/10 text-orange-600 border-orange-500/20",
+        Suspended: "bg-slate-500/10 text-slate-600 border-slate-500/20"
     };
 
     const colors = {

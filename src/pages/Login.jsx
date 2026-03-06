@@ -49,8 +49,8 @@ export default function Login() {
     };
 
     return (
-        <div className="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex items-center justify-center p-4">
-            <div className="w-full max-w-6xl bg-white dark:bg-slate-900 rounded-3xl shadow-xl border border-slate-100 dark:border-slate-800 overflow-hidden flex h-[800px] max-h-[90vh]">
+        <div className="bg-background-light font-display text-slate-900 min-h-screen flex items-center justify-center p-4">
+            <div className="w-full max-w-6xl bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden flex h-[800px] max-h-[90vh]">
                 {/* Sol Taraf - Görsel Alan (Video Loop) */}
                 <div className="hidden lg:block lg:w-1/2 relative overflow-hidden">
                     <video
@@ -81,18 +81,18 @@ export default function Login() {
                 </div>
 
                 {/* Sağ Taraf - Form Alanı */}
-                <div className="w-full lg:w-1/2 p-8 md:p-16 flex flex-col justify-center bg-white dark:bg-slate-900">
+                <div className="w-full lg:w-1/2 p-8 md:p-16 flex flex-col justify-center bg-white">
                     <div className="max-w-md w-full mx-auto">
                         <div className="flex items-center gap-3 mb-10">
                             <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg shadow-primary/10 overflow-hidden bg-white/50 backdrop-blur-sm border border-white/20 p-1.5">
                                 <img src={logoImg} alt="Aktar Pro Logo" className="w-full h-full object-contain" />
                             </div>
-                            <h1 className="text-2xl font-bold tracking-tight text-slate-800 dark:text-white">Aktar Pro</h1>
+                            <h1 className="text-2xl font-bold tracking-tight text-slate-800">Aktar Pro</h1>
                         </div>
 
                         <div className="mb-8">
-                            <h2 className="text-3xl font-bold text-slate-800 dark:text-white mb-2">Yönetim Paneline Giriş Yap</h2>
-                            <p className="text-slate-500 dark:text-slate-400">Hoş geldiniz! Devam etmek için bilgilerinizi giriniz.</p>
+                            <h2 className="text-3xl font-bold text-slate-800 mb-2">Yönetim Paneline Giriş Yap</h2>
+                            <p className="text-slate-500">Hoş geldiniz! Devam etmek için bilgilerinizi giriniz.</p>
                         </div>
 
                         <form className="space-y-6" onSubmit={handleSubmit}>
@@ -103,7 +103,7 @@ export default function Login() {
                             )}
 
                             <div>
-                                <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2" htmlFor="email">
+                                <label className="block text-sm font-semibold text-slate-700 mb-2" htmlFor="email">
                                     E-posta Adresi
                                 </label>
                                 <div className="relative group">
@@ -116,7 +116,7 @@ export default function Login() {
                                         type="email"
                                         required
                                         placeholder="eposta@adresiniz.com"
-                                        className="w-full pl-12 pr-4 py-3.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:border-primary focus:ring-4 focus:ring-primary/20 rounded-xl text-sm transition-all outline-none dark:text-white"
+                                        className="w-full pl-12 pr-4 py-3.5 bg-slate-50 border border-slate-200 focus:border-primary focus:ring-4 focus:ring-primary/20 rounded-xl text-sm transition-all outline-none"
                                         value={formData.email}
                                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                         disabled={loading}
@@ -125,7 +125,7 @@ export default function Login() {
                             </div>
 
                             <div>
-                                <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2" htmlFor="password">
+                                <label className="block text-sm font-semibold text-slate-700 mb-2" htmlFor="password">
                                     Şifre
                                 </label>
                                 <div className="relative group">
@@ -138,7 +138,7 @@ export default function Login() {
                                         type="password"
                                         required
                                         placeholder="••••••••"
-                                        className="w-full pl-12 pr-4 py-3.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:border-primary focus:ring-4 focus:ring-primary/20 rounded-xl text-sm transition-all outline-none dark:text-white"
+                                        className="w-full pl-12 pr-4 py-3.5 bg-slate-50 border border-slate-200 focus:border-primary focus:ring-4 focus:ring-primary/20 rounded-xl text-sm transition-all outline-none"
                                         value={formData.password}
                                         onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                                         disabled={loading}
@@ -152,7 +152,7 @@ export default function Login() {
                                         <input
                                             id="remember"
                                             type="checkbox"
-                                            className="peer h-5 w-5 cursor-pointer appearance-none rounded border border-slate-300 checked:bg-primary checked:border-primary transition-all dark:bg-slate-700 dark:border-slate-600"
+                                            className="peer h-5 w-5 cursor-pointer appearance-none rounded border border-slate-300 checked:bg-primary checked:border-primary transition-all"
                                             checked={remember}
                                             onChange={(e) => setRemember(e.target.checked)}
                                             disabled={loading}
@@ -161,7 +161,7 @@ export default function Login() {
                                             <Check size={14} strokeWidth={4} />
                                         </span>
                                     </div>
-                                    <label className="ml-2 text-sm font-medium text-slate-600 dark:text-slate-400 cursor-pointer" htmlFor="remember">
+                                    <label className="ml-2 text-sm font-medium text-slate-600 cursor-pointer" htmlFor="remember">
                                         Beni Hatırla
                                     </label>
                                 </div>
@@ -187,7 +187,7 @@ export default function Login() {
                         </form>
 
                         <div className="mt-8 text-center">
-                            <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
+                            <p className="text-sm text-slate-600 mb-4">
                                 Hesabınız yok mu?{' '}
                                 <a className="font-bold text-primary hover:underline" href="#">
                                     Bir hesap oluşturun
